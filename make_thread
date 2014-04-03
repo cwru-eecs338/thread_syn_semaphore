@@ -1,0 +1,13 @@
+CC=gcc
+out=sem_fork_thread_e
+main=sem_fork_thread.c
+
+$(out): sem_fork_thread.o sem_functions.o
+	$(CC) -o $(out) sem_fork_thread.o sem_functions.o -lpthread -g
+sem_functions.o: sem_functions.c
+	$(CC) -o sem_functions.o -c sem_functions.c -g
+sem_fork_thread.o: $(main)
+	$(CC) -o sem_fork_thread.o -c  $(main) -g
+
+clean:
+	rm -rf *.o $(out)
